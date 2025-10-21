@@ -171,7 +171,7 @@ y_pred_log = log_model.predict(X_test_c_scaled)
 
 
 # --- 2.C: MODEL 2 - K-EN YAKIN KOMŞU (KNN) ---
-print("\n--- 2.C: Model 2 - K-En Yakın Komşu (KNN) ---")
+print("\n--- 2.C: Model 2 - K-En Yakin Komşu (KNN) ---")
 # Week 3'te öğrenilen KNN, bir "tembel öğrenici"dir (lazy learner).
 # Tahmin için en yakın K komşunun oyunu kullanır.
 # K=5 seçiyoruz (genellikle tek sayı olması önerilir).
@@ -274,7 +274,7 @@ sns.scatterplot(x=X_train_v_scaled[:, 0], y=X_train_v_scaled[:, 1], c=y_train_v,
 plt.title('Bölüm 2: KNN (k=5) Karar Sınırları (2 Özellik)')
 plt.xlabel('Yaşam Alanı (GrLivArea) - Ölçeklenmiş')
 plt.ylabel('Oda Sayısı (BedroomAbvGr) - Ölçeklenmiş')
-plt.legend(['0: Ucuz', '1: Pahalı'])
+# plt.legend(['0: Ucuz', '1: Pahalı']) # Bu satır bazen hataya neden olabilir, scatter'ın label'ı yeterli
 plt.savefig('2_knn_decision_boundary.png')
 print("Grafik '2_knn_decision_boundary.png' olarak kaydedildi.")
 print("\nTüm işlemler tamamlandı.")
