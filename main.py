@@ -127,7 +127,7 @@ print("="*50)
 print("\n--- 2.A: Sınıflandırma için Veri Hazırlama ---")
 
 # 1. Kategorik Hedef Değişkeni Oluşturma
-# [cite_start]'SalePrice'ı kategorik hale getiriyoruz. [cite: 39]
+# 'SalePrice'ı kategorik hale getiriyoruz.
 median_price = df['SalePrice'].median()
 print(f"Ortanca ev fiyatı (Median Price): ${median_price:.2f}")
 
@@ -151,7 +151,7 @@ y_class = df_class[class_target]
 X_train_c, X_test_c, y_train_c, y_test_c = train_test_split(X_class, y_class, test_size=0.2, random_state=42)
 
 # 5. ÖNEMLİ: Veri Ölçeklendirme (Feature Scaling)
-# [cite_start]KNN (mesafe bazlı) [cite: 283, 292] [cite_start]ve Lojistik Regresyon [cite: 161, 163] ölçeklendirmeden faydalanır.
+# KNN (mesafe bazlı) ve Lojistik Regresyon ölçeklendirmeden faydalanır.
 scaler = StandardScaler()
 X_train_c_scaled = scaler.fit_transform(X_train_c)
 X_test_c_scaled = scaler.transform(X_test_c)
@@ -160,8 +160,8 @@ print("Özellikler (X_train, X_test) StandardScaler ile ölçeklendi.")
 
 # --- 2.B: MODEL 1 - LOJİSTİK REGRESYON ---
 print("\n--- 2.B: Model 1 - Lojistik Regresyon ---")
-# [cite_start]Week 3'te öğrenilen Lojistik Regresyon, ikili sınıflandırma için kullanılır[cite: 39, 40, 162].
-# [cite_start]Tahmini olasılığa dönüştürmek için Sigmoid Fonksiyonu kullanır[cite: 188, 195].
+# Week 3'te öğrenilen Lojistik Regresyon, ikili sınıflandırma için kullanılır.
+# Tahmini olasılığa dönüştürmek için Sigmoid Fonksiyonu kullanır.
 log_model = LogisticRegression(random_state=42)
 log_model.fit(X_train_c_scaled, y_train_c)
 print("Lojistik Regresyon modeli eğitildi.")
@@ -172,9 +172,9 @@ y_pred_log = log_model.predict(X_test_c_scaled)
 
 # --- 2.C: MODEL 2 - K-EN YAKIN KOMŞU (KNN) ---
 print("\n--- 2.C: Model 2 - K-En Yakın Komşu (KNN) ---")
-# [cite_start]Week 3'te öğrenilen KNN, bir "tembel öğrenici"dir (lazy learner)[cite: 142, 147, 288, 354].
-# [cite_start]Tahmin için en yakın K komşunun oyunu kullanır[cite: 375, 391].
-# [cite_start]K=5 seçiyoruz (genellikle tek sayı olması önerilir [cite: 451]).
+# Week 3'te öğrenilen KNN, bir "tembel öğrenici"dir (lazy learner).
+# Tahmin için en yakın K komşunun oyunu kullanır.
+# K=5 seçiyoruz (genellikle tek sayı olması önerilir).
 knn_model = KNeighborsClassifier(n_neighbors=5)
 knn_model.fit(X_train_c_scaled, y_train_c)
 print("KNN modeli (k=5) eğitildi.")
@@ -194,11 +194,11 @@ print("="*50)
 
 # --- Lojistik Regresyon Değerlendirmesi ---
 print("\n--- Lojistik Regresyon Sonuçları ---")
-[cite_start]cm_log = confusion_matrix(y_test_c, y_pred_log) # [cite: 505]
-[cite_start]acc_log = accuracy_score(y_test_c, y_pred_log) # [cite: 501, 502]
-[cite_start]pre_log = precision_score(y_test_c, y_pred_log) # [cite: 517]
-[cite_start]rec_log = recall_score(y_test_c, y_pred_log) # [cite: 521]
-[cite_start]f1_log = f1_score(y_test_c, y_pred_log) # [cite: 526]
+cm_log = confusion_matrix(y_test_c, y_pred_log)
+acc_log = accuracy_score(y_test_c, y_pred_log)
+pre_log = precision_score(y_test_c, y_pred_log)
+rec_log = recall_score(y_test_c, y_pred_log)
+f1_log = f1_score(y_test_c, y_pred_log)
 
 print(f"  Confusion Matrix:\n {cm_log}")
 print(f"  Accuracy (Doğruluk): {acc_log:.3f}")
@@ -209,11 +209,11 @@ print(f"  F1-Score: {f1_log:.3f}")
 
 # --- KNN Değerlendirmesi ---
 print("\n--- KNN (k=5) Sonuçları ---")
-[cite_start]cm_knn = confusion_matrix(y_test_c, y_pred_knn) # [cite: 505]
-[cite_start]acc_knn = accuracy_score(y_test_c, y_pred_knn) # [cite: 501, 502]
-[cite_start]pre_knn = precision_score(y_test_c, y_pred_knn) # [cite: 517]
-[cite_start]rec_knn = recall_score(y_test_c, y_pred_knn) # [cite: 521]
-[cite_start]f1_knn = f1_score(y_test_c, y_pred_knn) # [cite: 526]
+cm_knn = confusion_matrix(y_test_c, y_pred_knn)
+acc_knn = accuracy_score(y_test_c, y_pred_knn)
+pre_knn = precision_score(y_test_c, y_pred_knn)
+rec_knn = recall_score(y_test_c, y_pred_knn)
+f1_knn = f1_score(y_test_c, y_pred_knn)
 
 print(f"  Confusion Matrix:\n {cm_knn}")
 print(f"  Accuracy (Doğruluk): {acc_knn:.3f}")
